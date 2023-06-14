@@ -35,7 +35,7 @@ try:
         push_url = 'https://sctapi.ftqq.com/{}.send?title=机场签到&desp={}'.format(SCKEY, content)
         requests.post(url=push_url)
         # 推送到 Bard iOS APP
-        push_url = 'https://api.day.app/RWsgW5brfK3eKqFjmvYRwW/推送消息分组/机场签到/{}?group=机场签到'.format(email, content)
+        push_url = 'https://api.day.app/RWsgW5brfK3eKqFjmvYRwW/推送消息分组/机场签到/{}?group=机场签到'.format(content)
         requests.post(url=push_url)
         print('推送成功')
 except:
@@ -45,5 +45,5 @@ except:
         push_url = 'https://sctapi.ftqq.com/{}.send?title=机场签到&desp={}'.format(SCKEY, content)
         requests.post(url=push_url)
         # 推送到 Bard iOS APP
-        push_url = 'https://api.day.app/RWsgW5brfK3eKqFjmvYRwW/推送消息分组/机场签到/{}?group=机场签到'.format(email, content)
+        push_url = 'https://api.day.app/RWsgW5brfK3eKqFjmvYRwW/推送消息分组/机场签到/{}?group=机场签到'.format(content)
         requests.post(url=push_url)
