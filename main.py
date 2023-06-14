@@ -29,21 +29,21 @@ try:
     # 进行签到
     result = json.loads(session.post(url=check_url,headers=header).text)
     print(result['msg'])
-    content = result['msg']
+    content = email + ' ' + result['msg']
     # 进行推送
     if SCKEY != '':
         push_url = 'https://sctapi.ftqq.com/{}.send?title=机场签到&desp={}'.format(SCKEY, content)
         requests.post(url=push_url)
         # 推送到 Bard iOS APP
-        push_url = 'https://api.day.app/RWsgW5brfK3eKqFjmvYRwW/推送消息分组/ikuuu/{}%20{}?group=ikuuu签到'.format(email, content)
+        push_url = 'https://api.day.app/RWsgW5brfK3eKqFjmvYRwW/推送消息分组/机场签到/{}?group=机场签到'.format(email, content)
         requests.post(url=push_url)
         print('推送成功')
 except:
-    content = '签到失败'
+    content = email + ' ' + '签到失败'
     print(content)
     if SCKEY != '':
         push_url = 'https://sctapi.ftqq.com/{}.send?title=机场签到&desp={}'.format(SCKEY, content)
         requests.post(url=push_url)
         # 推送到 Bard iOS APP
-        push_url = 'https://api.day.app/RWsgW5brfK3eKqFjmvYRwW/推送消息分组/ikuuu/{}%20{}?group=ikuuu签到'.format(email, content)
+        push_url = 'https://api.day.app/RWsgW5brfK3eKqFjmvYRwW/推送消息分组/机场签到/{}?group=机场签到'.format(email, content)
         requests.post(url=push_url)
