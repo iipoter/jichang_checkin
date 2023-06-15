@@ -9,6 +9,8 @@ email = os.environ.get('EMAIL')
 passwd = os.environ.get('PASSWD')
 # server酱
 SCKEY = os.environ.get('SCKEY')
+# 推送BARK的token
+Bark_Token = os.environ.get('BARK_TOKEN')
 
 login_url = '{}/auth/login'.format(url)
 check_url = '{}/user/checkin'.format(url)
@@ -34,8 +36,9 @@ try:
     if SCKEY != '':
         push_url = 'https://sctapi.ftqq.com/{}.send?title=机场签到&desp={}'.format(SCKEY, content)
         requests.post(url=push_url)
-        # 推送到 Bard iOS APP
-        push_url = 'https://api.day.app/RWsgW5brfK3eKqFjmvYRwW/推送消息分组/机场签到/{}?group=机场签到'.format(content)
+    # 推送到 Bard iOS APP
+    if Bark_Token != '':
+        push_url = 'https://api.day.app/{}/推送消息分组/机场签到/{}?group=机场签到'.format(Bark_Token, content)
         requests.post(url=push_url)
         print('推送成功')
 except:
@@ -44,6 +47,7 @@ except:
     if SCKEY != '':
         push_url = 'https://sctapi.ftqq.com/{}.send?title=机场签到&desp={}'.format(SCKEY, content)
         requests.post(url=push_url)
-        # 推送到 Bard iOS APP
-        push_url = 'https://api.day.app/RWsgW5brfK3eKqFjmvYRwW/推送消息分组/机场签到/{}?group=机场签到'.format(content)
+    # 推送到 Bard iOS APP
+    if Bark_Token != '':
+        push_url = 'https://api.day.app/{}/推送消息分组/机场签到/{}?group=机场签到'.format(Bark_Token, content)
         requests.post(url=push_url)
