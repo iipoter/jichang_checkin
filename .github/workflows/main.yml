@@ -37,6 +37,7 @@ jobs:
         env:
           URL: ${{ secrets.URL }}
           SCKEY: ${{ secrets.SCKEY }}
+          BARK_TOKEN: ${{ secrets.BARK_TOKEN }}
           EMAIL: ${{ secrets.EMAIL }}
           PASSWD: ${{ secrets.PASSWD }}
         run: |
