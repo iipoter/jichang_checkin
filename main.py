@@ -38,7 +38,7 @@ try:
         requests.post(url=push_url)
     # 推送到 Bard iOS APP
     if Bark_Token != '':
-        push_url = 'https://api.day.app/{}/推送消息分组/机场签到/{}?group=机场签到'.format(Bark_Token, content)
+        push_url = 'https://api.day.app/{}/机场签到/{}'.format(Bark_Token, content)
         requests.get(url=push_url)
         print('推送成功')
 except Exception as ex:
@@ -50,5 +50,5 @@ except Exception as ex:
         requests.post(url=push_url)
     # 推送到 Bard iOS APP
     if Bark_Token != '':
-        push_url = 'https://api.day.app/{}/推送消息分组/机场签到/{}?group=机场签到'.format(Bark_Token, content)
+        push_url = 'https://api.day.app/{}/机场签到/{}'.format(Bark_Token, content)
         requests.get(url=push_url)
