@@ -37,10 +37,10 @@ try:
         push_url = 'https://sctapi.ftqq.com/{}.send?title=机场签到&desp={}'.format(SCKEY, content)
         requests.post(url=push_url)
     # 推送到 Bard iOS APP
-    if Bark_Token != '':
-        push_url = 'https://api.day.app/{}/机场签到/{}'.format(Bark_Token, content)
-        requests.get(url=push_url)
-        print('推送成功')
+    #if Bark_Token != '':
+    push_url = 'https://api.day.app/{}/机场签到/{}'.format(Bark_Token, content)
+    requests.get(url=push_url)
+    print('推送成功')
 except Exception as ex:
     content = email + ' ' + '签到失败'
     content +=  '. 出现如下异常：' + str(ex)
@@ -49,6 +49,6 @@ except Exception as ex:
         push_url = 'https://sctapi.ftqq.com/{}.send?title=机场签到&desp={}'.format(SCKEY, content)
         requests.post(url=push_url)
     # 推送到 Bard iOS APP
-    if Bark_Token != '':
-        push_url = 'https://api.day.app/{}/机场签到/{}'.format(Bark_Token, content)
-        requests.get(url=push_url)
+    #if Bark_Token != '':
+    push_url = 'https://api.day.app/{}/机场签到/{}'.format(Bark_Token, content)
+    requests.get(url=push_url)
