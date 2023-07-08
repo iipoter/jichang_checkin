@@ -56,14 +56,15 @@ def check_in(url):
         print(content)
         return False
 
+
 try:
-    url = '{}/auth/login'.format(os.environ.get('URL1'))
+    url = os.environ.get('URL1')
     isSuccess = check_in(url)
     if not isSuccess:
-        url = '{}/auth/login'.format(os.environ.get('URL2'))
+        url = os.environ.get('URL2')
         isSuccess = check_in(url)
     if not isSuccess:
-        url = '{}/auth/login'.format(os.environ.get('URL3'))
+        url = os.environ.get('URL3')
         isSuccess = check_in(url)
 except Exception as ex:
     content = email + ' ' + '签到失败'
