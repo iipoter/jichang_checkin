@@ -52,28 +52,11 @@ def check_in(url):
         print('推送成功')
         return True
     except Exception as ex:
-        content += '出现如下异常：' + str(ex)
+        content = '出现如下异常：' + str(ex)
         print(content)
         return False
 
-
 try:
-    # print('进行登录...')
-    # response = json.loads(session.post(url=login_url,headers=header,data=data).text)
-    # print(response['msg'])
-    # # 进行签到
-    # result = json.loads(session.post(url=check_url,headers=header).text)
-    # print(result['msg'])
-    # content = email + ' ' + result['msg']
-    # # 进行推送
-    # if SCKEY != '':
-    #     push_url = 'https://sctapi.ftqq.com/{}.send?title=机场签到&desp={}'.format(SCKEY, content)
-    #     requests.post(url=push_url)
-    # # 推送到 Bard iOS APP
-    # #if Bark_Token != '':
-    # push_url = 'https://api.day.app/{}/机场签到/{}'.format(Bark_Token, content)
-    # requests.get(url=push_url)
-    # print('推送成功')
     url = '{}/auth/login'.format(os.environ.get('URL1'))
     isSuccess = check_in(url)
     if not isSuccess:
