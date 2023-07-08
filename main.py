@@ -12,14 +12,7 @@ SCKEY = os.environ.get('SCKEY')
 # 推送BARK的token
 Bark_Token = os.environ.get('BARK_TOKEN')
 
-# login_url = '{}/auth/login'.format(url)
-# check_url = '{}/user/checkin'.format(url)
 
-
-# header = {
-#     'origin': url,
-#     'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36'
-# }
 data = {
     'email': email,
     'passwd': passwd
@@ -60,12 +53,16 @@ def check_in(url):
 try:
     url = os.environ.get('URL1')
     isSuccess = check_in(url)
+    # 启用多个URL重试机制
     if not isSuccess:
         url = os.environ.get('URL2')
         isSuccess = check_in(url)
     if not isSuccess:
         url = os.environ.get('URL3')
         isSuccess = check_in(url)
+    if not isSuccess:
+        content = email + ' ' + '签到失败，原因是所有URL不可用'
+        push_url = 'https://api.day.app/{}/机场签到/{}'.format(Bark_Token, content)
 except Exception as ex:
     content = email + ' ' + '签到失败'
     content += '. 出现如下异常：' + str(ex)
