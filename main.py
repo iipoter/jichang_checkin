@@ -1,5 +1,4 @@
 import requests, json, re, os
-from numpy.distutils.fcompiler import none
 
 session = requests.session()
 # 机场的地址
