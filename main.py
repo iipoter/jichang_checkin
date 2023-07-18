@@ -50,7 +50,8 @@ def push_to_wechat(content):
     push_url = 'https://sctapi.ftqq.com/{}.send?title=机场签到&desp={}'.format(SCKEY, content)
     print('wechat url=' + push_url)
     msg = requests.post(url=push_url)
-    print(msg.__getattribute__('content'))
+    message = msg.__getattribute__('content')
+    print(message.decode('unicode_escape'))
     print('wechat推送成功')
 
 
@@ -59,7 +60,8 @@ def push_to_bark(content):
     push_url = 'https://api.day.app/{}/机场签到/{}'.format(Bark_Token, content)
     print('bark url=' + push_url)
     msg = requests.get(url=push_url)
-    print(msg.__getattribute__('content'))
+    message = msg.__getattribute__('content')
+    print(message.decode('unicode_escape'))
     print('bark推送成功')
 
 
