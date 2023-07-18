@@ -1,4 +1,5 @@
 import requests, json, re, os
+from numpy.distutils.fcompiler import none
 
 session = requests.session()
 # 机场的地址
@@ -52,6 +53,15 @@ def check_in(url):
 
 try:
     url = os.environ.get('URL1')
+    if url is None:
+        print("url is empty")
+        exit(1)
+    if email is None:
+        print("email is empty")
+        exit(1)
+    if passwd is None:
+        print("passwd is empty")
+        exit(1)
     isSuccess = check_in(url)
     # 启用多个URL重试机制
     if not isSuccess:
@@ -61,8 +71,10 @@ try:
         url = os.environ.get('URL3')
         isSuccess = check_in(url)
     if not isSuccess:
-        content = email + ' ' + '签到失败，原因是所有URL不可用'
+        content = email + ' 签到失败，原因是所有URL不可用'
         push_url = 'https://api.day.app/{}/机场签到/{}'.format(Bark_Token, content)
+        print(content)
+        requests.get(url=push_url)
 except Exception as ex:
     content = email + ' ' + '签到失败'
     content += '. 出现如下异常：' + str(ex)
