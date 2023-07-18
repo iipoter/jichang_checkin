@@ -33,21 +33,34 @@ def check_in(url):
         # 进行签到
         result = json.loads(session.post(url=check_url, headers=header).text)
         print(result['msg'])
-        content = email + ' ' + result['msg']
+        content = email + ',' + result['msg']
         # 进行推送
         if SCKEY != '':
-            push_url = 'https://sctapi.ftqq.com/{}.send?title=机场签到&desp={}'.format(SCKEY, content)
-            requests.post(url=push_url)
-        # 推送到 Bard iOS APP
-        # if Bark_Token != '':
-        push_url = 'https://api.day.app/{}/机场签到/{}'.format(Bark_Token, content)
-        requests.get(url=push_url)
-        print('推送成功')
+            push_to_wechat(content)
+        push_to_bark(content)
         return True
     except Exception as ex:
         content = '出现如下异常：' + str(ex)
         print(content)
         return False
+
+
+# 推送到微信公众号
+def push_to_wechat(content):
+    push_url = 'https://sctapi.ftqq.com/{}.send?title=机场签到&desp={}'.format(SCKEY, content)
+    print('wechat url=' + push_url)
+    msg = requests.post(url=push_url)
+    print(msg.__getattribute__('content'))
+    print('wechat推送成功')
+
+
+# 推送到 Bard iOS APP
+def push_to_bark(content):
+    push_url = 'https://api.day.app/{}/机场签到/{}'.format(Bark_Token, content)
+    print('bark url=' + push_url)
+    msg = requests.get(url=push_url)
+    print(msg.__getattribute__('content'))
+    print('bark推送成功')
 
 
 try:
@@ -69,18 +82,13 @@ try:
         url = os.environ.get('URL3')
         isSuccess = check_in(url)
     if not isSuccess:
-        content = email + ' 签到失败，原因是所有URL不可用'
-        push_url = 'https://api.day.app/{}/机场签到/{}'.format(Bark_Token, content)
+        content = email + ',签到失败，原因是所有URL不可用'
         print(content)
-        requests.get(url=push_url)
+        push_to_bark(content)
 except Exception as ex:
-    content = email + ' ' + '签到失败'
-    content += '. 出现如下异常：' + str(ex)
+    content = email + ',签到失败'
+    content += ',出现如下异常：' + str(ex)
     print(content)
     if SCKEY != '':
-        push_url = 'https://sctapi.ftqq.com/{}.send?title=机场签到&desp={}'.format(SCKEY, content)
-        requests.post(url=push_url)
-    # 推送到 Bard iOS APP
-    # if Bark_Token != '':
-    push_url = 'https://api.day.app/{}/机场签到/{}'.format(Bark_Token, content)
-    requests.get(url=push_url)
+        push_to_wechat(content)
+    push_to_bark(content)
