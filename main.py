@@ -2,7 +2,7 @@ import requests, json, re, os
 
 session = requests.session()
 # 机场的地址
-# url = os.environ.get('URL1')
+url = os.environ.get('URL1')
 # 配置用户名（一般是邮箱）
 email = os.environ.get('EMAIL')
 # 配置用户名对应的密码 和上面的email对应上
@@ -51,7 +51,6 @@ def check_in(url):
 
 
 try:
-    url = os.environ.get('URL1')
     if url is None:
         print("url is empty")
         exit(1)
