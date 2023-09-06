@@ -35,7 +35,6 @@ def check_in(url, email, passwd):
             response = json.loads(text)
             print(response['msg'])
         except Exception as ex:
-            # print()
             pass
         # 进行签到
         post_result2 = session.post(url=check_url, headers=header)
@@ -44,7 +43,6 @@ def check_in(url, email, passwd):
             result = json.loads(text2)
             print(result['msg'])
         except Exception as ex:
-            # print()
             pass
         # 进行推送
         content = email + ',' + result['msg']
@@ -88,12 +86,13 @@ try:
 
     # 将 JSON 对象转换为 Python 字典
     json_str = json.dumps(email_passwd)
+
     emailAndPasswd = json.loads(json_str)
     jsonRepr = repr(email_passwd)
     print(type(emailAndPasswd))
-    # if(isinstance(email_passwd, str) | isinstance(email_passwd, bytes)):
-    #     json1 = ast.literal_eval(email_passwd)
-    #     print(type(json1))
+    if(isinstance(email_passwd, str) | isinstance(email_passwd, bytes)):
+        emailAndPasswd = ast.literal_eval(email_passwd)
+        print(type(emailAndPasswd))
 
 
     for email in emailAndPasswd:
