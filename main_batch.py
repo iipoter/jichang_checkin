@@ -119,7 +119,7 @@ except Exception as ex:
     msg = traceback.format_exc()
     print(msg)
 
-    content = email + ',签到失败'
+    content = '签到失败'
     content += ',出现如下异常：' + str(ex)
     print(content)
     if SCKEY != '':
