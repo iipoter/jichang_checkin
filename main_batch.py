@@ -85,16 +85,16 @@ try:
         exit(1)
 
     # 将 JSON 对象转换为 Python 字典
-    json_str = json.dumps(email_passwd)
+    # json_str = json.dumps(email_passwd)
 
     emailAndPasswd = json.loads(email_passwd)
     jsonRepr = repr(email_passwd)
     print(type(email_passwd))
     print(type(emailAndPasswd))
-    if(isinstance(emailAndPasswd, str) | isinstance(emailAndPasswd, bytes)):
-        # emailAndPasswd1 = eval(emailAndPasswd)
+    if(isinstance(email_passwd, str) | isinstance(email_passwd, bytes)):
+        # emailAndPasswd1 = eval(email_passwd)
         # print(type(emailAndPasswd1))
-        emailAndPasswd = ast.literal_eval(emailAndPasswd)
+        emailAndPasswd = ast.literal_eval(email_passwd)
         print(type(emailAndPasswd))
 
     for email in emailAndPasswd:
