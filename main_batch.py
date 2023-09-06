@@ -92,8 +92,8 @@ try:
     print(type(email_passwd))
     print(type(emailAndPasswd))
     if(isinstance(emailAndPasswd, str) | isinstance(emailAndPasswd, bytes)):
-        emailAndPasswd1 = eval(emailAndPasswd)
-        print(type(emailAndPasswd1))
+        # emailAndPasswd1 = eval(emailAndPasswd)
+        # print(type(emailAndPasswd1))
         emailAndPasswd = ast.literal_eval(emailAndPasswd)
         print(type(emailAndPasswd))
 
