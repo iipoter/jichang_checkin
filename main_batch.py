@@ -113,14 +113,14 @@ try:
         exit(1)
 
     # 将 JSON 对象转换为 Python 字典
-    json_str = json.dumps(email_passwd) 
-    # print("Python 原始数据：", repr(email_passwd)) 
+    json_str = json.dumps(email_passwd)
+    # print("Python 原始数据：", repr(email_passwd))
     # print("JSON 对象：", json_str)
 
     emailAndPasswd = json.loads(json_str) 
-    print("Python 原始数据：", repr(email_passwd)) 
-    print("JSON 对象：", json_str) 
-    print("JSON 对象2：", emailAndPasswd)  
+    print("Python 原始数据：", repr(email_passwd))
+    print("JSON 对象：", json_str)
+    print("JSON 对象2：", emailAndPasswd)
 
     for email in emailAndPasswd:
         print(email)
