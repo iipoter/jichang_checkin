@@ -1,4 +1,4 @@
-import requests, json, re, os
+import requests, json, re, os, traceback
 
 session = requests.session()
 # 机场的地址
@@ -18,21 +18,21 @@ email_passwd = os.environ.get('EMAIL_PASSWD')
 # email_passwd = {'poterliu@163.com': '19690726qq.com',
 #                 'poterliu@126.com': '19690726qq.com',
 #                 'poterliu@foxmail.com': '19690726qq.com',
-#                 'xsliuos@gmail.com': '19690726qq.com',
+#                 'xsliuos@gmail.com': '19690726qq.com',  
 #                 'juniuslau@126.com': '19690726qq.com',
 #                 'ipoterliu@gmail.com': '19690726qq.com',
 #                 'poterliu@outlook.com': '19690726qq.com',
 #                 'poterliu@hotmail.com': '19690726gmail.com',
 #                 'plwater@outlook.com': '19690726gmail.com',
-#                 'likepoter@gmail.com': '19901010gmail.com',
-#                 'bcmfullstacker@gmail.com': '19690726outlook.com',
-#                 'liudanpo@gmail.com': '19901010gmail.com',
-#                 'poterliu@qq.cm': '19690726qq.com'
+#                 'likepoter@gmail.com': '19901010gmail.com', 
+#                 'bcmfullstacker@gmail.com': '19690726outlook.com', 
+#                 'liudanpo@gmail.com': '19901010gmail.com', 
+#                 'poterliu@qq.cm': '19690726qq.com'  
 #                 }
 # email = 'poterliu@163.com'
 # passwd = '19690726qq.com'
-# SCKEY = 'SCT213232TKPvYwIZmzFymRChgU9MHMsgG'
-# Bark_Token = 'RWsgW5brfK3eKqFjmvYRwW'
+SCKEY = 'SCT213232TKPvYwIZmzFymRChgU9MHMsgG'
+Bark_Token = 'RWsgW5brfK3eKqFjmvYRwW'
 ##############################################################
 
 # data = {
@@ -43,7 +43,7 @@ email_passwd = os.environ.get('EMAIL_PASSWD')
 
 def check_in(url, email, passwd):
     login_url = '{}/auth/login'.format(url)
-    check_url = '{}/user/checkin'.format(url)
+    check_url = '{}/user/checkin'.format(url) 
     header = {
         'origin': url,
         'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36'
@@ -58,18 +58,22 @@ def check_in(url, email, passwd):
         text = post_result.text
         content0 = post_result.content
         try:
-        # response = json.loads(post_result.text)
             response = json.loads(text)
             print(response['msg'])
         except Exception as ex:
-            print()
+            # print()
+            pass
         # 进行签到
         post_result2 = session.post(url=check_url, headers=header)
         text2 = post_result2.text
-        result = json.loads(text2)
-        print(result['msg'])
-        content = email + ',' + result['msg']
+        try:
+            result = json.loads(text2)
+            print(result['msg'])
+        except Exception as ex:
+            # print()
+            pass
         # 进行推送
+        content = email + ',' + result['msg']
         if SCKEY != '':
             push_to_wechat(content)
         push_to_bark(content)
@@ -107,12 +111,6 @@ try:
     if email_passwd is None:
         print("email_passwd is empty")
         exit(1)
-    # if email is None:
-    #     print("email is empty")
-    #     exit(1)
-    # if passwd is None:
-    #     print("passwd is empty")
-    #     exit(1)
 
     # 将 JSON 对象转换为 Python 字典
     json_str = json.dumps(email_passwd)
@@ -134,14 +132,23 @@ try:
         if not isSuccess:
             url3 = os.environ.get('URL3')
             if url3 is None:
-                isSuccess = check_in(url3, email, emailAndPasswd[email])
+                isSuccess = check_in(url3, email, emailAndPasswd[email]) 
         if not isSuccess:
             content = email + ',签到失败，原因是所有URL不可用'
             print(content)
             push_to_bark(content)
+        print()
 
 
 except Exception as ex:
+    # logging.exception(ex)
+    # print('--------------------')
+    # traceback.print_exc()
+    # print('--------------------')
+    msg = traceback.format_exc()
+    print(msg)
+    # print('--------------------')
+
     content = email + ',签到失败'
     content += ',出现如下异常：' + str(ex)
     print(content)
