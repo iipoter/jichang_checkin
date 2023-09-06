@@ -91,9 +91,9 @@ try:
     jsonRepr = repr(email_passwd)
     print(type(email_passwd))
     print(type(emailAndPasswd))
-    # if(isinstance(email_passwd, str) | isinstance(email_passwd, bytes)):
-    #     emailAndPasswd = ast.literal_eval(email_passwd)
-    #     print(type(emailAndPasswd))
+    if(isinstance(email_passwd, str) | isinstance(email_passwd, bytes)):
+        emailAndPasswd = ast.literal_eval(email_passwd)
+        print(type(emailAndPasswd))
 
     for email in emailAndPasswd:
         print('email=' + email)
