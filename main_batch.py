@@ -118,16 +118,10 @@ try:
 
     emailAndPasswd = json.loads(json_str)
     jsonRepr = repr(email_passwd)
-    # print("Python 原始数据：", jsonRepr)
-    # print("JSON 对象：", json_str)
-    # print("JSON 对象2：", emailAndPasswd)
-    # print(type(json_str))
-    # print(type(jsonRepr))
     print(type(emailAndPasswd))
-    if(isinstance(email_passwd, str) | isinstance(email_passwd, bytes)):
-        json1 = ast.literal_eval(email_passwd)
-        # json1 = eval(email_passwd)
-        print(type(json1))
+    # if(isinstance(email_passwd, str) | isinstance(email_passwd, bytes)):
+    #     json1 = ast.literal_eval(email_passwd)
+    #     print(type(json1))
 
 
     for email in emailAndPasswd:
