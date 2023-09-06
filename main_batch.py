@@ -18,21 +18,21 @@ email_passwd = os.environ.get('EMAIL_PASSWD')
 # email_passwd = {'poterliu@163.com': '19690726qq.com',
 #                 'poterliu@126.com': '19690726qq.com',
 #                 'poterliu@foxmail.com': '19690726qq.com',
-#                 'xsliuos@gmail.com': '19690726qq.com',  
+#                 'xsliuos@gmail.com': '19690726qq.com',
 #                 'juniuslau@126.com': '19690726qq.com',
 #                 'ipoterliu@gmail.com': '19690726qq.com',
 #                 'poterliu@outlook.com': '19690726qq.com',
 #                 'poterliu@hotmail.com': '19690726gmail.com',
 #                 'plwater@outlook.com': '19690726gmail.com',
-#                 'likepoter@gmail.com': '19901010gmail.com', 
-#                 'bcmfullstacker@gmail.com': '19690726outlook.com', 
-#                 'liudanpo@gmail.com': '19901010gmail.com', 
-#                 'poterliu@qq.cm': '19690726qq.com'  
+#                 'likepoter@gmail.com': '19901010gmail.com',
+#                 'bcmfullstacker@gmail.com': '19690726outlook.com',
+#                 'liudanpo@gmail.com': '19901010gmail.com',
+#                 'poterliu@qq.cm': '19690726qq.com'
 #                 }
 # email = 'poterliu@163.com'
 # passwd = '19690726qq.com'
-SCKEY = 'SCT213232TKPvYwIZmzFymRChgU9MHMsgG'
-Bark_Token = 'RWsgW5brfK3eKqFjmvYRwW'
+# SCKEY = 'SCT213232TKPvYwIZmzFymRChgU9MHMsgG'
+# Bark_Token = 'RWsgW5brfK3eKqFjmvYRwW'
 ##############################################################
 
 # data = {
@@ -43,7 +43,7 @@ Bark_Token = 'RWsgW5brfK3eKqFjmvYRwW'
 
 def check_in(url, email, passwd):
     login_url = '{}/auth/login'.format(url)
-    check_url = '{}/user/checkin'.format(url) 
+    check_url = '{}/user/checkin'.format(url)
     header = {
         'origin': url,
         'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36'
@@ -132,7 +132,7 @@ try:
         if not isSuccess:
             url3 = os.environ.get('URL3')
             if url3 is None:
-                isSuccess = check_in(url3, email, emailAndPasswd[email]) 
+                isSuccess = check_in(url3, email, emailAndPasswd[email])
         if not isSuccess:
             content = email + ',签到失败，原因是所有URL不可用'
             print(content)
