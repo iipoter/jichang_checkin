@@ -12,32 +12,7 @@ SCKEY = os.environ.get('SCKEY')
 # 推送BARK的token
 Bark_Token = os.environ.get('BARK_TOKEN')
 email_passwd = os.environ.get('EMAIL_PASSWD')
-# print(type(email_passwd))
 
-##############################################################
-url = 'https://ikuuu.art'
-email_passwd = {'poterliu@163.com': '19690726qq.com',
-                'poterliu@126.com': '19690726qq.com',
-                'poterliu@foxmail.com': '19690726qq.com',
-                'xsliuos@gmail.com': '19690726qq.com',
-                'juniuslau@126.com': '19690726qq.com',
-                'ipoterliu@gmail.com': '19690726qq.com',
-                'poterliu@outlook.com': '19690726qq.com',
-                'poterliu@hotmail.com': '19690726gmail.com',
-                'plwater@outlook.com': '19690726gmail.com',
-                'likepoter@gmail.com': '19901010gmail.com',
-                'bcmfullstacker@gmail.com': '19690726outlook.com',
-                'liudanpo@gmail.com': '19901010gmail.com',
-                'poterliu@qq.cm': '19690726qq.com'
-                }
-SCKEY = 'SCT213232TKPvYwIZmzFymRChgU9MHMsgG'
-Bark_Token = 'RWsgW5brfK3eKqFjmvYRwW'
-##############################################################
-
-# data = {
-#     'email': email,
-#     'passwd': passwd
-# }
 
 
 def check_in(url, email, passwd):
@@ -113,9 +88,6 @@ try:
 
     # 将 JSON 对象转换为 Python 字典
     json_str = json.dumps(email_passwd)
-    # print("Python 原始数据：", repr(email_passwd))
-    # print("JSON 对象：", json_str)
-
     emailAndPasswd = json.loads(json_str)
     jsonRepr = repr(email_passwd)
     print(type(emailAndPasswd))
@@ -145,13 +117,8 @@ try:
             push_to_bark(content)
         print()
 except Exception as ex:
-    # logging.exception(ex)
-    # print('--------------------')
-    # traceback.print_exc()
-    # print('--------------------')
     msg = traceback.format_exc()
     print(msg)
-    # print('--------------------')
 
     content = email + ',签到失败'
     content += ',出现如下异常：' + str(ex)
