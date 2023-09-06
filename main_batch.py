@@ -1,4 +1,4 @@
-import requests, json, re, os, traceback
+import requests, json, re, os, traceback, ast
 
 session = requests.session()
 # 机场的地址
@@ -15,23 +15,23 @@ email_passwd = os.environ.get('EMAIL_PASSWD')
 print(type(email_passwd))
 
 ##############################################################
-# url = 'https://ikuuu.art'
-# email_passwd = {'poterliu@163.com': '19690726qq.com',
-#                 'poterliu@126.com': '19690726qq.com',
-#                 'poterliu@foxmail.com': '19690726qq.com',
-#                 'xsliuos@gmail.com': '19690726qq.com',
-#                 'juniuslau@126.com': '19690726qq.com',
-#                 'ipoterliu@gmail.com': '19690726qq.com',
-#                 'poterliu@outlook.com': '19690726qq.com',
-#                 'poterliu@hotmail.com': '19690726gmail.com',
-#                 'plwater@outlook.com': '19690726gmail.com',
-#                 'likepoter@gmail.com': '19901010gmail.com',
-#                 'bcmfullstacker@gmail.com': '19690726outlook.com',
-#                 'liudanpo@gmail.com': '19901010gmail.com',
-#                 'poterliu@qq.cm': '19690726qq.com'
-#                 }
-# SCKEY = 'SCT213232TKPvYwIZmzFymRChgU9MHMsgG'
-# Bark_Token = 'RWsgW5brfK3eKqFjmvYRwW'
+url = 'https://ikuuu.art'
+email_passwd = {'poterliu@163.com': '19690726qq.com',
+                'poterliu@126.com': '19690726qq.com',
+                'poterliu@foxmail.com': '19690726qq.com',
+                'xsliuos@gmail.com': '19690726qq.com',
+                'juniuslau@126.com': '19690726qq.com',
+                'ipoterliu@gmail.com': '19690726qq.com',
+                'poterliu@outlook.com': '19690726qq.com',
+                'poterliu@hotmail.com': '19690726gmail.com',
+                'plwater@outlook.com': '19690726gmail.com',
+                'likepoter@gmail.com': '19901010gmail.com',
+                'bcmfullstacker@gmail.com': '19690726outlook.com',
+                'liudanpo@gmail.com': '19901010gmail.com',
+                'poterliu@qq.cm': '19690726qq.com'
+                }
+SCKEY = 'SCT213232TKPvYwIZmzFymRChgU9MHMsgG'
+Bark_Token = 'RWsgW5brfK3eKqFjmvYRwW'
 ##############################################################
 
 # data = {
@@ -124,8 +124,11 @@ try:
     print(type(json_str))
     print(type(emailAndPasswd))
     print(type(jsonRepr))
-    json1 = eval(email_passwd)
-    print(type(json1))
+    if(isinstance(email_passwd, str) | isinstance(email_passwd, bytes)):
+        json1 = ast.literal_eval(email_passwd)
+        # json1 = eval(email_passwd)
+        print(type(json1))
+
 
     for email in emailAndPasswd:
         print('email=' + email)
