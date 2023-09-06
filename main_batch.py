@@ -122,7 +122,9 @@ try:
 
     for email in emailAndPasswd:
         print(email)
+        print(type(emailAndPasswd))
         passwd = emailAndPasswd[email]
+        # passwd = json_str[email]
         print(passwd)
         isSuccess = check_in(url, email, passwd)
         # 启用多个URL重试机制
