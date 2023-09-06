@@ -29,8 +29,6 @@ email_passwd = os.environ.get('EMAIL_PASSWD')
 #                 'liudanpo@gmail.com': '19901010gmail.com',
 #                 'poterliu@qq.cm': '19690726qq.com'
 #                 }
-# email = 'poterliu@163.com'
-# passwd = '19690726qq.com'
 # SCKEY = 'SCT213232TKPvYwIZmzFymRChgU9MHMsgG'
 # Bark_Token = 'RWsgW5brfK3eKqFjmvYRwW'
 ##############################################################
@@ -117,7 +115,7 @@ try:
     # print("Python 原始数据：", repr(email_passwd))
     # print("JSON 对象：", json_str)
 
-    emailAndPasswd = json.loads(json_str) 
+    emailAndPasswd = json.loads(json_str)
     print("Python 原始数据：", repr(email_passwd))
     print("JSON 对象：", json_str)
     print("JSON 对象2：", emailAndPasswd)
@@ -141,8 +139,6 @@ try:
             print(content)
             push_to_bark(content)
         print()
-
-
 except Exception as ex:
     # logging.exception(ex)
     # print('--------------------')
