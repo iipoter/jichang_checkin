@@ -118,10 +118,12 @@ try:
 
     emailAndPasswd = json.loads(json_str)
     jsonRepr = repr(email_passwd)
-    print("Python 原始数据：", jsonRepr)
-    print("JSON 对象：", json_str)
-    print("JSON 对象2：", emailAndPasswd)
+    # print("Python 原始数据：", jsonRepr)
+    # print("JSON 对象：", json_str)
+    # print("JSON 对象2：", emailAndPasswd)
+    print(type(json_str))
     print(type(emailAndPasswd))
+    print(type(jsonRepr))
 
     for email in emailAndPasswd:
         print('email=' + email)
