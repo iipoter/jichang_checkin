@@ -12,6 +12,7 @@ SCKEY = os.environ.get('SCKEY')
 # 推送BARK的token
 Bark_Token = os.environ.get('BARK_TOKEN')
 email_passwd = os.environ.get('EMAIL_PASSWD')
+print(type(email_passwd))
 
 ##############################################################
 # url = 'https://ikuuu.art'
@@ -116,16 +117,17 @@ try:
     # print("JSON 对象：", json_str)
 
     emailAndPasswd = json.loads(json_str)
-    print("Python 原始数据：", repr(email_passwd))
+    jsonRepr = repr(email_passwd)
+    print("Python 原始数据：", jsonRepr)
     print("JSON 对象：", json_str)
     print("JSON 对象2：", emailAndPasswd)
+    print(type(emailAndPasswd))
 
     for email in emailAndPasswd:
-        print(email)
-        print(type(emailAndPasswd))
+        print('email=' + email)
         passwd = emailAndPasswd[email]
         # passwd = json_str[email]
-        print(passwd)
+        print('passwd=' + passwd)
         isSuccess = check_in(url, email, passwd)
         # 启用多个URL重试机制
         if not isSuccess:
