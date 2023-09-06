@@ -124,6 +124,8 @@ try:
     print(type(json_str))
     print(type(emailAndPasswd))
     print(type(jsonRepr))
+    json1 = eval(email_passwd)
+    print(type(json1))
 
     for email in emailAndPasswd:
         print('email=' + email)
