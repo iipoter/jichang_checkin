@@ -114,11 +114,11 @@ try:
         if not isSuccess:
             url2 = os.environ.get('URL2')
             if url2 is None:
-                isSuccess = check_in(url2, email, emailAndPasswd[email])
+                isSuccess = check_in(url2, email, passwd)
         if not isSuccess:
             url3 = os.environ.get('URL3')
             if url3 is None:
-                isSuccess = check_in(url3, email, emailAndPasswd[email])
+                isSuccess = check_in(url3, email, passwd)
         if not isSuccess:
             content = email + ',签到失败，原因是所有URL不可用'
             print(content)
