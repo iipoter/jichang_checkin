@@ -98,7 +98,7 @@ try:
     print('email_passwd type=', type(email_passwd))
     print('emailAndPasswd type=', type(emailAndPasswd))
     print('jsonRepr type=', type(jsonRepr))
-    if(isinstance(email_passwd, str) | isinstance(email_passwd, bytes)):
+    # if(isinstance(email_passwd, str) | isinstance(email_passwd, bytes)):
         # emailAndPasswd1 = eval(email_passwd)
         # print(type(emailAndPasswd1))
         # emailAndPasswd = ast.literal_eval(email_passwd)
