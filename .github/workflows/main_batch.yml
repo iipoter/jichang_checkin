@@ -34,18 +34,6 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
       
-      - name: Set up JQ
-        uses: docker://circleci/jq:1.6
-
-      - name: Parse JSON
-        run: |
-          echo "${{ vars.EMAIL_PASSWD }}" | jq '.' > parsed.json
-
-      - name: Use parsed JSON
-        run: |
-          key1=$(jq -r '.poterliu@163.com' parsed.json)
-          echo "Key 1 is $poterliu@163.com"
-      
       - name: Run sign
         env:
           URL1: ${{ vars.URL1 }}
@@ -53,6 +41,6 @@ jobs:
           URL3: ${{ vars.URL3 }}
           SCKEY: ${{ secrets.SCKEY }}
           BARK_TOKEN: ${{ secrets.BARK_TOKEN }} 
-          EMAIL_PASSWD: ${{ vars.EMAIL_PASSWD }} 
+          EMAIL_PASSWD: ${{ fromJson(vars.EMAIL_PASSWD) }}
         run: |
           python3 ./main_batch.py
