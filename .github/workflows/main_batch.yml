@@ -41,6 +41,6 @@ jobs:
           URL3: ${{ vars.URL3 }}
           SCKEY: ${{ secrets.SCKEY }}
           BARK_TOKEN: ${{ secrets.BARK_TOKEN }}
-          EMAIL_PASSWD: ${{ vars.EMAIL_PASSWD }}
+          EMAIL_PASSWD: ${{ secrets.EMAIL_PASSWD }}
         run: |
           python3 ./main_batch.py
