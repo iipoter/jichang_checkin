@@ -33,15 +33,19 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
-      - name: Parse json 
-        id: json
-        uses: frabert/replace-string-action@v2.4
-        with:
-          text: ${{ vars.EMAIL_PASSWD }} # 或 ${{ env.VARIABLE_NAME }}
-          replace-with: ${{ fromJson(vars.EMAIL_PASSWD) }} # 或 ${{ fromJson(env.VARIABLE_NAME) }}
-      - name: Print parsed value
+      
+      - name: Set up JQ
+        uses: docker://circleci/jq:1.6
+
+      - name: Parse JSON
         run: |
-          echo "${{ steps.json.outputs }}"
+          echo "${{ vars.EMAIL_PASSWD }}" | jq '.' > parsed.json
+
+      - name: Use parsed JSON
+        run: |
+          key1=$(jq -r '.poterliu@163.com' parsed.json)
+          echo "Key 1 is $poterliu@163.com"
+      
       - name: Run sign
         env:
           URL1: ${{ vars.URL1 }}
