@@ -87,9 +87,9 @@ try:
     # 将 JSON 对象转换为 Python 字典
     # json_str = json.dumps(email_passwd)
 
-    print(type(email_passwd))
-    # emailAndPasswd = ast.literal_eval(email_passwd)
-    # print(type(emailAndPasswd))
+    # print(type(email_passwd))
+    emailAndPasswd = ast.literal_eval(email_passwd)
+    print(type(emailAndPasswd))
     # emailAndPasswd1 = eval(email_passwd)
     # print(type(emailAndPasswd1))
 
