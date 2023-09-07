@@ -89,9 +89,9 @@ try:
 
     # print(type(email_passwd))
     emailAndPasswd = ast.literal_eval(email_passwd)
-    print(type(emailAndPasswd))
-    # emailAndPasswd1 = eval(email_passwd)
-    # print(type(emailAndPasswd1))
+    print('emailAndPasswd type=', type(emailAndPasswd))
+    emailAndPasswd1 = eval(email_passwd)
+    print('emailAndPasswd1 type=', type(emailAndPasswd1))
 
     print('email_passwd type=', type(email_passwd))
     jsonRepr = repr(email_passwd)
