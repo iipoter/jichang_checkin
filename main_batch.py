@@ -88,12 +88,12 @@ try:
     # json_str = json.dumps(email_passwd)
 
     # print(type(email_passwd))
+    print('email_passwd type=', type(email_passwd))
     emailAndPasswd = ast.literal_eval(email_passwd)
     print('emailAndPasswd type=', type(emailAndPasswd))
     emailAndPasswd1 = eval(email_passwd)
     print('emailAndPasswd1 type=', type(emailAndPasswd1))
 
-    print('email_passwd type=', type(email_passwd))
     jsonRepr = repr(email_passwd)
     print('jsonRepr type=', type(jsonRepr))    
     emailAndPasswd = json.loads(email_passwd)
@@ -106,10 +106,9 @@ try:
         # print(type(emailAndPasswd))
 
     for email in emailAndPasswd:
-        print('email=' + email)
+        # print('email=' + email)
         passwd = emailAndPasswd[email]
-        # passwd = json_str[email]
-        print('passwd=' + passwd)
+        # print('passwd=' + passwd)
         isSuccess = check_in(url, email, passwd)
         # 启用多个URL重试机制
         if not isSuccess:
