@@ -35,10 +35,10 @@ jobs:
           pip install -r requirements.txt
       - name: Parse json 
         id: json
-        uses: frabert/replace-string-action@v1.2
+        uses: frabert/replace-string-action@v2.4
         with:
           text: ${{ vars.EMAIL_PASSWD }} # 或 ${{ env.VARIABLE_NAME }}
-          replace-with: ${{ fromJson(secrets.SECRET_NAME) }} # 或 ${{ fromJson(env.VARIABLE_NAME) }}
+          replace-with: ${{ fromJson(vars.EMAIL_PASSWD) }} # 或 ${{ fromJson(env.VARIABLE_NAME) }}
       - name: Print parsed value
         run: |
           echo "${{ steps.json.outputs }}"
