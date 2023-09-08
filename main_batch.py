@@ -35,7 +35,8 @@ def check_in(url, email, passwd):
             response = json.loads(text)
             print(response['msg'])
         except Exception as ex:
-            pass
+            print('登录出错')
+            # pass
         # 进行签到
         post_result2 = session.post(url=check_url, headers=header)
         text2 = post_result2.text
@@ -43,7 +44,8 @@ def check_in(url, email, passwd):
             result = json.loads(text2)
             print(result['msg'])
         except Exception as ex:
-            pass
+            print('签到出错')
+            # pass
         # 进行推送
         content = email + ',' + result['msg']
         if SCKEY != '':
@@ -124,6 +126,7 @@ try:
             print(content)
             push_to_bark(content)
         print()
+        session = requests.session()
 except Exception as ex:
     msg = traceback.format_exc()
     print(msg)
