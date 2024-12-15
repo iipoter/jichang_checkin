@@ -21,13 +21,13 @@ jobs:
           # ref: master
 
       - name: Set up python
-        uses: actions/setup-python@v3
+        uses: actions/setup-python@v2
         with:
-          python-version: 3.7.17
+          python-version: 3.13.1
 
       - name: Random sleep
         if: github.event_name == 'schedule'
-        run: sleep $(shuf -i 10-300 -n 1)
+        run: sleep $(shuf -i 10-300 -n 1)  
 
       - name: Install dependencies
         run: |
